@@ -1,4 +1,4 @@
-# Project Name
+D&D Dungeon Crawler Game
 ## Team Information
 ### Team Members
 - Carter Boyce
@@ -8,7 +8,7 @@
 ---
 ## Project Description
 ### Domain
-[Project description]
+[Build a character, explore a dungeon room by room, fight monsters in simulated turn-based combat, loot items, and see how deep you can get.]
 ---
 ## User Stories
 ### User Story 1
