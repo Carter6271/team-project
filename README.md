@@ -30,6 +30,7 @@ Add login as a shared use case based on the course's login example.
 ---
 ## Use Cases
 ### Use Case 1
+Choose race and class.
 ### Use Case 2
 ### Use Case 3
 (Add additional use cases as needed.)
