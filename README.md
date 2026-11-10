@@ -11,7 +11,7 @@ D&D Dungeon Crawler Game
 [Build a character, explore a dungeon room by room, fight monsters in simulated turn-based combat, loot items, and see how deep you can get.]
 ---
 ## User Stories
-### User Story 1
+### 
 ### User Story 2
 ### User Story 3
 (Add additional user stories as needed.)
@@ -35,7 +35,7 @@ D&D Dungeon Crawler Game
 (Add additional entities as needed.)
 ---
 ## API Usage
-**API Name:**
+**API Name: https://www.dnd5eapi.co/**
 **Documentation:** [Link]
 **How it is used in the program:**
 ---
