@@ -1,12 +1,10 @@
 # Project Name
 ## Team Information
 ### Team Members
-- Name
-- Name
-- Name
-- Name
-- Name
-- Name
+- Carter Boyce
+- Yulu (Emily) Ye
+- Valerie Huang
+- Darius Fleischmann
 ---
 ## Project Description
 ### Domain
