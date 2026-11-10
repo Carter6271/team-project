@@ -15,9 +15,17 @@ It's an adventure game application based on the Dungeons & Dragons (D&D) game wh
 
 ---
 ## User Stories
-### 
+### User Story 1
+Create a character: As a player, I want to choose a race and class and see my starting stats, so I can start my own hero.
 ### User Story 2
+As a player, I want to move between rooms, read descriptions, and pick up items into an inventory, so I can find loot.
 ### User Story 3
+As a player, I want to fight monsters turn by turn using dice rolls, attacks, and items, so I can survive and progress.
+### User Story 4
+As a player, I want to save and load my game and see a leaderboard of deepest floors, so I can come back and compete.
+
+Add login as a shared use case based on the course's login example.
+
 (Add additional user stories as needed.)
 ---
 ## Use Cases
