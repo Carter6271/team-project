@@ -8,7 +8,8 @@ D&D Dungeon Crawler Game
 ---
 ## Project Description
 ### Domain
-[Build a character, explore a dungeon room by room, fight monsters in simulated turn-based combat, loot items, and see how deep you can get.]
+Games & Entertainment
+It's an adventure game application based on the Dungeons & Dragons (D&D) game where players build a character, explore a dungeon room by room, fight monsters in simulated turn-based combat, loot items, and see how deep they can get. Progress in the game is saved to players' accounts and a leaderboard ranking all the players.
 ---
 ## User Stories
 ### 
