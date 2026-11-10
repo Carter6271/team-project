@@ -37,9 +37,10 @@ Add login as a shared use case based on the course's login example.
 ## Minimal Viable Product (MVP)
 | Team Member | MVP Use Case |
 |-------------|--------------|
-| Name | Use Case |
-| Name | Use Case |
-| Name | Use Case |
+| Valerie | Use Case 1 |
+| Emily | Use Case 2 |
+| Carter | Use Case 3 |
+| Darius | Use Case 4 |
 ---
 ## Entities
 ### Entity 1
