@@ -9,9 +9,6 @@ public class CombatInteractor implements CombatInputBoundary {
     private final CombatDataAccessInterface dataAccess;
     private final CombatOutputBoundary presenter;
     private final DiceRoller diceRoller;
-    private int playerInitiative;
-    private int monsterInitiative;
-    private boolean playerTurn;
 
     public CombatInteractor(
             CombatDataAccessInterface dataAccess,
@@ -27,6 +24,10 @@ public class CombatInteractor implements CombatInputBoundary {
     public void startCombat(CombatInputData inputData) {
         PlayerCharacter character = inputData.getCharacter();
         Monster monster = inputData.getMonster();
+        int playerInitiative;
+        int monsterInitiative;
+        boolean playerTurn;
+        String message;
 
         if (!character.isAlive() || !monster.isAlive()) {
             //TODO display error
@@ -38,10 +39,19 @@ public class CombatInteractor implements CombatInputBoundary {
         monsterInitiative = diceRoller.roll (20) + (monster.getStats().getDexterity() - 10) / 2;
 
         playerTurn = playerInitiative >= monsterInitiative;
+        if (playerTurn) {
+            message = "Started combat with " + monster.getName() + ". You got a " + playerInitiative +
+                    " and " + monster.getName() + " got a " + monsterInitiative + " so you go first.";
+
+        } else {
+            message = "Started combat with " + monster.getName() + ". You got a " + playerInitiative +
+                    " and " + monster.getName() + " got a " + monsterInitiative + " so " + monster.getName()
+                    + " goes first.";
+        }
         CombatOutputData outputData = new CombatOutputData(character, monster,
-                                                            character.getHealth(), monster.getCurrentHealth(),
-                                                            "Started combat with " + monster.getName(),
-                                                            playerTurn,false, false);
+                character.getHealth(), monster.getCurrentHealth(), message,
+                playerTurn,false, false);
+
         presenter.prepareSuccessView(outputData);
     }
 
