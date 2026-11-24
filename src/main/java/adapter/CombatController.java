@@ -13,13 +13,14 @@ public class CombatController {
     }
 
     public void startCombat(PlayerCharacter character, Monster monster) {
-        CombatInputData inputData = new CombatInputData(character, monster);
+
+        CombatInputData inputData = new CombatInputData(character, monster, false);
 
         interactor.startCombat(inputData);
     }
 
-    public void attack(PlayerCharacter character, Monster monster) {
-        CombatInputData inputData = new CombatInputData(character, monster);
+    public void attack(PlayerCharacter character, Monster monster, boolean playerTurn) {
+        CombatInputData inputData = new CombatInputData(character, monster, playerTurn);
 
         interactor.attack(inputData);
     }

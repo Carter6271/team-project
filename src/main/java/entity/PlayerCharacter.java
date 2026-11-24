@@ -24,6 +24,7 @@ public class PlayerCharacter {
   public PlayerCharacter(Race race, CharacterClass characterClass) {
       this.race = race;
       this.characterClass = characterClass;
+
       this.stats = characterClass.getBaseStats().plus(race.getBonuses());
       this.maxHealth = this.stats.getConstitution() * 3;
       this.health = this.maxHealth;

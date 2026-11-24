@@ -8,9 +8,10 @@ public class CombatInputData {
     private final Monster monster;
     private boolean playerTurn;
 
-    public CombatInputData(PlayerCharacter character, Monster monster) {
+    public CombatInputData(PlayerCharacter character, Monster monster, boolean playerTurn) {
         this.character = character;
         this.monster = monster;
+        this.playerTurn = playerTurn;
     }
 
     public PlayerCharacter getCharacter() {return character;}

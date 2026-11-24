@@ -27,10 +27,15 @@ public class CombatInteractor implements CombatInputBoundary {
         int playerInitiative;
         int monsterInitiative;
         boolean playerTurn;
-        String message;
+        StringBuilder message = new StringBuilder();
 
+        if (character == null || monster == null) {
+            //TODO display error
+            return;
+        }
         if (!character.isAlive() || !monster.isAlive()) {
             //TODO display error
+            return;
         }
 
         CombatEncounter combat = new CombatEncounter(character, monster);
@@ -40,16 +45,31 @@ public class CombatInteractor implements CombatInputBoundary {
 
         playerTurn = playerInitiative >= monsterInitiative;
         if (playerTurn) {
-            message = "Started combat with " + monster.getName() + ". You got a " + playerInitiative +
-                    " and " + monster.getName() + " got a " + monsterInitiative + " so you go first.";
+            message.append("Started combat with ")
+                    .append(monster.getName())
+                    .append(". You got a ")
+                    .append(playerInitiative)
+                    .append(" and ")
+                    .append(monster.getName())
+                    .append(" got a ")
+                    .append(monsterInitiative)
+                    .append(" so you go first.");
 
         } else {
-            message = "Started combat with " + monster.getName() + ". You got a " + playerInitiative +
-                    " and " + monster.getName() + " got a " + monsterInitiative + " so " + monster.getName()
-                    + " goes first.";
+            message.append("Started combat with ")
+                    .append(monster.getName())
+                    .append(". You got a ")
+                    .append(playerInitiative)
+                    .append(" and ")
+                    .append(monster.getName())
+                    .append(" got a ")
+                    .append(monsterInitiative)
+                    .append(" so ")
+                    .append(monster.getName())
+                    .append(" goes first.");
         }
         CombatOutputData outputData = new CombatOutputData(character, monster,
-                character.getHealth(), monster.getCurrentHealth(), message,
+                character.getHealth(), monster.getCurrentHealth(), message.toString(),
                 playerTurn,false, false);
 
         presenter.prepareSuccessView(outputData);
@@ -57,6 +77,8 @@ public class CombatInteractor implements CombatInputBoundary {
 
     @Override
     public void attack(CombatInputData inputData) {
+
+
         if (inputData.isPlayerTurn()) {
 
         }
