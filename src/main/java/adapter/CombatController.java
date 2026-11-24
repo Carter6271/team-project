@@ -2,8 +2,8 @@ package adapter;
 
 import entity.Monster;
 import entity.PlayerCharacter;
-import usecase.combat.CombatInputBoundary;
-import usecase.combat.CombatInputData;
+import use_case.combat.CombatInputBoundary;
+import use_case.combat.CombatInputData;
 
 public class CombatController {
     private final CombatInputBoundary interactor;

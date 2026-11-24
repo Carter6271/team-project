@@ -16,7 +16,7 @@ import okhttp3.ResponseBody;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import usecase.CatalogGateway;
+import use_case.CatalogGateway;
 
 /** Retrieves races and character classes from the D&D 5e API. */
 public final class Dnd5eCatalogGateway implements CatalogGateway {

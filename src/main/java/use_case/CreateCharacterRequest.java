@@ -1,4 +1,4 @@
-package usecase;
+package use_case;
 
 /** Represents the race and character class selected by the user. */
 public class CreateCharacterRequest {

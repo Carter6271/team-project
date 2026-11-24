@@ -1,7 +1,7 @@
 package adapter;
 
-import usecase.CreateCharacterInteractor;
-import usecase.CreateCharacterRequest;
+import use_case.CreateCharacterInteractor;
+import use_case.CreateCharacterRequest;
 
 /** Converts character-selection input into a character-creation use-case request. */
 public final class CreateCharacterController {

@@ -1,4 +1,4 @@
-package usecase.combat;
+package use_case.combat;
 
 import entity.CombatEncounter;
 import entity.DiceRoller;

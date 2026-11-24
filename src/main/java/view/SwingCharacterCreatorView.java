@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingWorker;
-import usecase.CatalogGateway;
+import use_case.CatalogGateway;
 
 /** Creates the UI in Java Swing. */
 public final class SwingCharacterCreatorView implements CharacterCreatorDisplay {

@@ -1,4 +1,4 @@
-package usecase;
+package use_case;
 
 /** Defines the output boundary for character creation. */
 public interface CreateCharacterOutput {

@@ -1,8 +1,8 @@
 package adapter;
 
 import javax.swing.SwingUtilities;
-import usecase.CreateCharacterOutput;
-import usecase.CreateCharacterResponse;
+import use_case.CreateCharacterOutput;
+import use_case.CreateCharacterResponse;
 import view.CharacterCreatorDisplay;
 
 /** Presents character creation results through a Swing display. */

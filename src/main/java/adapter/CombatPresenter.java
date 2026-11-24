@@ -1,7 +1,7 @@
 package adapter;
 
-import usecase.combat.CombatOutputBoundary;
-import usecase.combat.CombatOutputData;
+import use_case.combat.CombatOutputBoundary;
+import use_case.combat.CombatOutputData;
 
 public class CombatPresenter implements CombatOutputBoundary {
     private final CombatViewModel viewModel;

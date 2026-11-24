@@ -1,4 +1,4 @@
-package usecase.combat;
+package use_case.combat;
 
 public interface CombatInputBoundary {
 
