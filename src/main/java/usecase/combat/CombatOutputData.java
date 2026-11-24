@@ -1,40 +1,46 @@
 package usecase.combat;
 
+import entity.Monster;
+import entity.PlayerCharacter;
+
 public class CombatOutputData {
-    private final String characterName;
-    private final String monsterName;
+    private final PlayerCharacter character;
+    private final Monster monster;
 
     private final int characterHealth;
     private final int monsterHealth;
 
     private final String combatMessage;
 
+    private final boolean playerTurn;
     private final boolean combatFinished;
     private final boolean characterWon;
 
-    public CombatOutputData(String characterName,
-                            String monsterName,
+    public CombatOutputData(PlayerCharacter character,
+                            Monster monster,
                             int characterHealth,
                             int monsterHealth,
                             String combatMessage,
+                            boolean playerTurn,
                             boolean combatFinished,
                             boolean characterWon) {
 
-        this.characterName = characterName;
-        this.monsterName = monsterName;
+        this.character = character;
+        this.monster = monster;
         this.characterHealth = characterHealth;
         this.monsterHealth = monsterHealth;
         this.combatMessage = combatMessage;
+        this.playerTurn = playerTurn;
         this.combatFinished = combatFinished;
         this.characterWon = characterWon;
     }
 
-    public String getCharacterName() {
-        return characterName;
+    public PlayerCharacter getCharacter() {
+        return character;
     }
 
-    public String getMonsterName() {
-        return monsterName;
+    public Monster getMonster() {
+        return monster;
     }
 
     public int getCharacterHealth() {
@@ -48,6 +54,8 @@ public class CombatOutputData {
     public String getCombatMessage() {
         return combatMessage;
     }
+
+    public boolean isPlayerTurn() {return playerTurn;}
 
     public boolean isCombatFinished() {
         return combatFinished;

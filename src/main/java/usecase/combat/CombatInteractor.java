@@ -9,6 +9,9 @@ public class CombatInteractor implements CombatInputBoundary {
     private final CombatDataAccessInterface dataAccess;
     private final CombatOutputBoundary presenter;
     private final DiceRoller diceRoller;
+    private int playerInitiative;
+    private int monsterInitiative;
+    private boolean playerTurn;
 
     public CombatInteractor(
             CombatDataAccessInterface dataAccess,
@@ -31,15 +34,21 @@ public class CombatInteractor implements CombatInputBoundary {
 
         CombatEncounter combat = new CombatEncounter(character, monster);
 
-        CombatOutputData outputData = new CombatOutputData(character.getName(), monster.getName(),
+        playerInitiative = diceRoller.roll (20) + (character.getStats().getDexterity() - 10) / 2;
+        monsterInitiative = diceRoller.roll (20) + (monster.getStats().getDexterity() - 10) / 2;
+
+        playerTurn = playerInitiative >= monsterInitiative;
+        CombatOutputData outputData = new CombatOutputData(character, monster,
                                                             character.getHealth(), monster.getCurrentHealth(),
                                                             "Started combat with " + monster.getName(),
-                                                            false, false);
+                                                            playerTurn,false, false);
         presenter.prepareSuccessView(outputData);
     }
 
     @Override
     public void attack(CombatInputData inputData) {
+        if (inputData.isPlayerTurn()) {
 
+        }
     }
 }
