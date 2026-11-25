@@ -1,5 +1,8 @@
 package entity;
 
+import entity.characters.Monster;
+import entity.characters.Stats;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
