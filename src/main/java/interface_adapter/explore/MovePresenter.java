@@ -12,7 +12,7 @@ import use_case.explore.move.MoveOutputData;
  */
 public class MovePresenter implements MoveOutputBoundary {
     /** Name of the combat view (Use Case 3). Change it to match the combat view's name once it exists. */
-    public static final String COMBAT_VIEW_NAME = "combat";
+    public static final String COMBAT_VIEW_NAME = "Combat";
 
     /** The Explore screen's data. */
     private final ExploreViewModel exploreViewModel;
@@ -71,15 +71,15 @@ public class MovePresenter implements MoveOutputBoundary {
      */
     @Override
     public void prepareCombatView(MoveOutputData outputData) {
-        // Update the Explore screen too, so it's correct when the player comes back after combat.
+        // Update the Explore screen.
         ExploreState state = exploreViewModel.getState();
         fillRoom(state, outputData);
-        state.setMessage("A " + outputData.getMonsterName() + " blocks your way! Prepare to fight.");
+        state.setMessage("A " + outputData.getMonsterName()
+                + " blocks your way! Prepare to fight.");
         state.setError(true);
         exploreViewModel.notifyStateChanged();
 
-        // TODO (Use Case 3): put the monster into the CombatViewModel's state here,
-        //  or have the combat view load it from the DAO when it opens.
+        // Switch to the Combat screen.
         viewManagerModel.setState(COMBAT_VIEW_NAME);
         viewManagerModel.notifyViewChanged();
     }

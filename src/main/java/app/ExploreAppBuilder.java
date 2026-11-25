@@ -1,6 +1,9 @@
 package app;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.combat.CombatController;
+import interface_adapter.combat.CombatPresenter;
+import interface_adapter.combat.CombatViewModel;
 import interface_adapter.explore.ExploreViewModel;
 import interface_adapter.explore.MoveController;
 import interface_adapter.explore.MovePresenter;
@@ -11,16 +14,17 @@ import use_case.explore.move.MoveInputBoundary;
 import use_case.explore.move.MoveInteractor;
 import use_case.explore.pick_up_item.PickUpItemInputBoundary;
 import use_case.explore.pick_up_item.PickUpItemInteractor;
+import use_case.combat.CombatDataAccessInterface;
+import use_case.combat.CombatInputBoundary;
+import use_case.combat.CombatInteractor;
+import data_access.RandomDiceRoller;
 import view.ExploreView;
+import view.Combat.CombatView;
 import view.ViewManager;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Font;
 
 /**
  * Wires up the Explore use case (Use Case 2). Copy the addExploreView() and
@@ -43,6 +47,8 @@ public class ExploreAppBuilder {
     // Created by the add...() methods below.
     private ExploreViewModel exploreViewModel;
     private ExploreView exploreView;
+    private CombatViewModel combatViewModel;
+    private CombatView combatView;
     private MoveController moveController;
 
     /**
@@ -70,20 +76,11 @@ public class ExploreAppBuilder {
         return this;
     }
 
-    /**
-     * Adds a placeholder screen until the combat view (Use Case 3) is merged in.
-     *
-     * @return this builder, for chaining
-     */
-    public ExploreAppBuilder addPlaceholderCombatView() {
-        JPanel combat = new JPanel(new BorderLayout());
-        JLabel label = new JLabel("<html><center>Combat (Use Case 3) starts here.<br>"
-                + "This is a placeholder for the combat view.</center></html>",
-                SwingConstants.CENTER);
-        label.setFont(label.getFont().deriveFont(Font.BOLD, 16f));
-        combat.add(label, BorderLayout.CENTER);
-        // Use the same name MovePresenter switches to.
-        cardPanel.add(combat, MovePresenter.COMBAT_VIEW_NAME);
+    /** Adds the Combat screen and registers it with the shared card layout. */
+    public ExploreAppBuilder addCombatView() {
+        combatViewModel = new CombatViewModel();
+        combatView = new CombatView(combatViewModel);
+        cardPanel.add(combatView, combatView.getViewName());
         return this;
     }
 
@@ -94,9 +91,23 @@ public class ExploreAppBuilder {
      * @return this builder, for chaining
      */
     public ExploreAppBuilder addExploreUseCases() {
+        // Combat is started by Move when it enters a room containing a monster.
+        if (combatViewModel == null) addCombatView();
+        CombatPresenter combatPresenter = new CombatPresenter(combatViewModel);
+        // Combat currently does not read or write through its DAO; this placeholder
+        // satisfies the boundary until combat persistence is implemented.
+        CombatDataAccessInterface combatDataAccess = new CombatDataAccessInterface() { };
+        CombatInputBoundary combatInteractor = new CombatInteractor(
+                combatDataAccess, combatPresenter, new RandomDiceRoller());
+        CombatController combatController = new CombatController(combatInteractor);
+
+        // Attach the controller to the registered Combat card.
+        // (The view is registered in addCombatView.)
+        combatView.setCombatController(combatController);
+
         // Move: presenter -> interactor -> controller -> view.
         MovePresenter movePresenter = new MovePresenter(exploreViewModel, viewManagerModel);
-        MoveInputBoundary moveInteractor = new MoveInteractor(dataAccess, movePresenter);
+        MoveInputBoundary moveInteractor = new MoveInteractor(dataAccess, movePresenter, combatController);
         moveController = new MoveController(moveInteractor);
         exploreView.setMoveController(moveController);
 

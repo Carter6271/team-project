@@ -4,6 +4,8 @@ import entity.Direction;
 import entity.Dungeon;
 import entity.Inventory;
 import entity.Room;
+import use_case.combat.CombatInputBoundary;
+import use_case.combat.CombatInputData;
 import use_case.explore.ExploreDataAccessInterface;
 import use_case.explore.ItemData;
 
@@ -22,7 +24,8 @@ public class MoveInteractor implements MoveInputBoundary {
     private final ExploreDataAccessInterface dataAccess;
     /** Who to report results to. */
     private final MoveOutputBoundary presenter;
-
+    /** Allows access to combat transition*/
+    private final CombatInputBoundary combatInput;
     /**
      * Creates the interactor. Both dependencies are interfaces, so tests can pass
      * in fakes.
@@ -30,9 +33,11 @@ public class MoveInteractor implements MoveInputBoundary {
      * @param dataAccess where to get the game state
      * @param presenter  where to send the results
      */
-    public MoveInteractor(ExploreDataAccessInterface dataAccess, MoveOutputBoundary presenter) {
+    public MoveInteractor(ExploreDataAccessInterface dataAccess, MoveOutputBoundary presenter,
+                          CombatInputBoundary combatInput) {
         this.dataAccess = dataAccess;
         this.presenter = presenter;
+        this.combatInput = combatInput;
     }
 
     /**
@@ -63,6 +68,10 @@ public class MoveInteractor implements MoveInputBoundary {
         MoveOutputData outputData = buildOutput(dungeon, dataAccess.getInventory());
         if (next.monsterPresent()) {
             // Extension 4a: there is a monster, so hand over to Combat (Use Case 3).
+            combatInput.startCombat(new CombatInputData(
+                    dataAccess.getPlayerCharacter(),
+                    next.getMonster()
+            ));
             presenter.prepareCombatView(outputData);
         }
         else {
@@ -81,6 +90,10 @@ public class MoveInteractor implements MoveInputBoundary {
         MoveOutputData outputData = buildOutput(dungeon, dataAccess.getInventory());
         // A saved game could put the player in a room with a monster, so check here too.
         if (dungeon.getCurrentRoom().monsterPresent()) {
+            combatInput.startCombat(new CombatInputData(
+                    dataAccess.getPlayerCharacter(),
+                    dungeon.getCurrentRoom().getMonster()
+            ));
             presenter.prepareCombatView(outputData);
         }
         else {

@@ -2,6 +2,7 @@ package data_access;
 
 import entity.Dungeon;
 import entity.Inventory;
+import entity.characters.PlayerCharacter;
 import use_case.explore.ExploreDataAccessInterface;
 
 /**
@@ -16,16 +17,18 @@ public class InMemoryExploreDataAccessObject implements ExploreDataAccessInterfa
     private Dungeon dungeon;
     /** The player's inventory. */
     private Inventory inventory;
-
+    /** The character */
+    private final PlayerCharacter playerCharacter;
     /**
      * Creates the DAO with a starting floor and inventory.
      *
      * @param dungeon   the floor the character starts on
      * @param inventory the player's inventory
      */
-    public InMemoryExploreDataAccessObject(Dungeon dungeon, Inventory inventory) {
+    public InMemoryExploreDataAccessObject(Dungeon dungeon, Inventory inventory, PlayerCharacter playerCharacter) {
         this.dungeon = dungeon;
         this.inventory = inventory;
+        this.playerCharacter = playerCharacter;
     }
 
     /** @return the current floor */
@@ -40,6 +43,11 @@ public class InMemoryExploreDataAccessObject implements ExploreDataAccessInterfa
         return inventory;
     }
 
+    /** @return the player */
+    @Override
+    public PlayerCharacter getPlayerCharacter() {
+        return playerCharacter;
+    }
     /**
      * Stores the latest state. In memory, this just keeps the references.
      *

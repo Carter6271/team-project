@@ -2,6 +2,7 @@ package use_case.explore;
 
 import entity.Dungeon;
 import entity.Inventory;
+import entity.characters.PlayerCharacter;
 
 /**
  * What the Explore use cases need from the data layer: the current dungeon
@@ -27,6 +28,13 @@ public interface ExploreDataAccessInterface {
      * @return the player's inventory
      */
     Inventory getInventory();
+
+    /**
+     * Gets the player character.
+     *
+     * @return the player character
+     */
+    PlayerCharacter getPlayerCharacter();
 
     /**
      * Called after the game state changes so the DAO can persist it if it wants to
